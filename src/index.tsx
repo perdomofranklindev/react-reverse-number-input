@@ -1,6 +1,20 @@
 import * as React from 'react';
-import { ReverseInputNumberProps } from './types';
+import type { ReverseInputNumberProps } from './types';
 
+/**
+ * @author Franklin Perdomo <perdomofranklindev@gmail.com>
+ * @description - Reverse input number component.
+ * @param {ReverseInputNumberProps} root0 - Props.
+ * @param {number} root0.max - Max.
+ * @param {number} root0.min - Min.
+ * @param {number} root0.decimalScale - Decimal scale.
+ * @param {boolean} root0.enableCommaSeparator - EnableCommaSeparator.
+ * @param {string | number} root0.value - Value.
+ * @param {Function} root0.onValueChange - On value change.
+ * @param {Function} root0.onChange - On change.
+ * @param {React.HTMLInputTypeAttribute} root0.type - Type.
+ * @returns {React.ReactElement} - React element.
+ */
 export const ReverseInputNumber = ({
   max,
   min,
@@ -11,12 +25,17 @@ export const ReverseInputNumber = ({
   onChange,
   type = 'text',
   ...props
-}: ReverseInputNumberProps) => {
+}: ReverseInputNumberProps): React.ReactElement => {
   // State to hold the input value
   const [inputValue, setInputValue] = React.useState<string>(
     typeof value === 'number' ? value.toString() : value,
   ); // Initialize with provided value
 
+  /**
+   * @description - Format value.
+   * @param {string} valueWithDecimal - Value with decimal.
+   * @returns {string} - Format value.
+   */
   const formatValue = (valueWithDecimal: string): string => {
     const formatter = new Intl.NumberFormat('en-US', {
       minimumFractionDigits: decimalScale || 0,
@@ -37,10 +56,15 @@ export const ReverseInputNumber = ({
     return formattedValue;
   };
 
+  /**
+   * @description - Handle value change.
+   * @param {string} formattedValue - Formatted value.
+   * @returns {void} - Nothing.
+   */
   const handleValueChange = (formattedValue: string): void => {
     if (onValueChange) {
       onValueChange({
-        formattedValue: formattedValue,
+        formattedValue,
         value: parseFloat(formattedValue.replace(/,/g, '')).toFixed(
           decimalScale || 0,
         ),
@@ -49,6 +73,10 @@ export const ReverseInputNumber = ({
     }
   };
 
+  /**
+   * @description - Handle empty value.
+   * @returns {void} - Nothing.
+   */
   const handleEmptyValue = (): void => {
     const zeroValue = `0${decimalScale ? '.' : ''}${
       decimalScale ? '0'.repeat(decimalScale || 0) : ''
@@ -57,6 +85,11 @@ export const ReverseInputNumber = ({
     handleValueChange(zeroValue);
   };
 
+  /**
+   * @description - Update value.
+   * @param newValue - New value.
+   * @returns {void} - Nothing.
+   */
   const updateValue = (newValue: string): void => {
     if (newValue === '') {
       handleEmptyValue();
@@ -77,6 +110,11 @@ export const ReverseInputNumber = ({
     handleValueChange(formattedValue);
   };
 
+  /**
+   * @description - Handle change.
+   * @param {React.ChangeEvent<HTMLInputElement>} e - React.ChangeEvent<HTMLInputElement>.
+   * @returns {void} - Nothing.
+   */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newValue = e.target.value;
     updateValue(newValue);

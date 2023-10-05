@@ -1,7 +1,7 @@
-import { ReverseInputNumber } from '.'
+import { ReverseInputNumber } from '.';
 
 describe('ReverseInputNumber', () => {
   it('is truthy', () => {
-    expect(ReverseInputNumber).toBeTruthy()
-  })
-})
+    expect(ReverseInputNumber).toBeTruthy();
+  });
+});
