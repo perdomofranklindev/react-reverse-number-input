@@ -4,6 +4,7 @@ import type { ReverseInputNumberProps } from './types';
 /**
  * @author Franklin Perdomo <perdomofranklindev@gmail.com>
  * @description - Reverse input number component.
+ * 
  * @param {ReverseInputNumberProps} root0 - Props.
  * @param {number} root0.max - Max.
  * @param {number} root0.min - Min.

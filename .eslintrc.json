@@ -1,112 +1,85 @@
 {
-  "root": true,
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "parser": "@typescript-eslint/parser",
-  "extends": [
-    "standard-with-typescript",
-    "eslint-config-prettier",
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
-    "plugin:jest/recommended",
-    "plugin:cypress/recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:jsdoc/recommended"
-  ],
-  "overrides": [
-    {
-      "env": {
-        "node": true
-      },
-      "files": [".eslintrc.{js,cjs}"],
-      "parserOptions": {
-        "sourceType": "script"
-      }
-    }
-  ],
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "project": "./tsconfig.json",
-    "warnOnUnsupportedTypeScriptVersion": false
-  },
-  "plugins": [
-    "@typescript-eslint",
-    "react",
-    "jsx-a11y",
-    "react-hooks",
-    "import",
-    "jsdoc",
-    "jest",
-    "cypress"
-  ],
-  "globals": {
-    "JSX": true,
-    "React": true
-  },
-  "settings": {
-    "jsdoc": {
-      "mode": "typescript"
-    }
-  },
-  "rules": {
-    "no-unused-vars": "warn",
-    "arrow-parens": "off",
-    "import/no-default-export": "error",
-    "react/no-unused-prop-types": "error",
-    "semi": ["error", "always"],
-    "@typescript-eslint/no-use-before-define": [
-      "error",
-      {
-        "functions": false,
-        "classes": true,
-        "variables": true,
-        "typedefs": true
-      }
-    ],
-    "@typescript-eslint/quotes": ["error", "single"],
-    "@typescript-eslint/explicit-function-return-type": [
-      "error",
-      {
-        "allowExpressions": true,
-        "allowTypedFunctionExpressions": true
-      }
-    ],
-    "@typescript-eslint/strict-boolean-expressions": 0,
-    "@typescript-eslint/triple-slash-reference": 0,
-    "jsdoc/newline-after-description": 0,
-    "jsdoc/require-param": "error",
-    "jsdoc/require-param-description": "error",
-    "jsdoc/require-param-name": "error",
-    "jsdoc/require-param-type": "off",
-    "jsdoc/require-returns": "error",
-    "jsdoc/require-returns-check": "error",
-    "jsdoc/require-returns-description": "error",
-    "jsdoc/require-returns-type": "off",
-    "jsdoc/valid-types": "error",
-    "jsdoc/check-alignment": "error",
-    "jsdoc/check-param-names": "error",
-    "jsdoc/check-tag-names": "error",
-    "jsdoc/check-types": "error",
-    "jsdoc/implements-on-classes": "error",
-    "jsdoc/no-undefined-types": "error",
-    "jsdoc/require-description-complete-sentence": "error",
-    "jsdoc/require-hyphen-before-param-description": "error",
-    "jsdoc/require-jsdoc": [
-      "error",
-      {
-        "require": {
-          "FunctionDeclaration": true,
-          "MethodDefinition": true,
-          "ClassDeclaration": false,
-          "ArrowFunctionExpression": false,
-          "FunctionExpression": false
-        }
-      }
-    ]
-  }
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"globals": {
+		"JSX": true,
+		"React": true
+	},
+	"extends": [
+		"standard-with-typescript",
+		"eslint-config-prettier",
+		"eslint:recommended",
+		"plugin:react/jsx-runtime",
+		"plugin:react/recommended",
+		"plugin:jest/recommended",
+		"plugin:cypress/recommended",
+		"plugin:jsx-a11y/recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": "latest",
+		"sourceType": "module",
+		"project": "./tsconfig.json",
+		"warnOnUnsupportedTypeScriptVersion": false
+	},
+	"plugins": ["react", "function-name"],
+	"rules": {
+		"no-unused-vars": "warn",
+		"no-else-return": "error",
+		"no-unreachable": "error",
+		"no-this-before-super": "warn",
+		"no-inner-declarations": "warn",
+		"no-shadow": "off",
+		"constructor-super": "error",
+		"getter-return": "error",
+		"function-name/starts-with-verb": "error",
+		"require-await": "off",
+		"@typescript-eslint/no-shadow": "error",
+		"@typescript-eslint/no-unnecessary-condition": "error",
+		"@typescript-eslint/strict-boolean-expressions": 0,
+		"@typescript-eslint/require-await": "error",
+		"@typescript-eslint/naming-convention": [
+			"error",
+			{
+				"selector": "variable",
+				"types": ["function"],
+				"format": ["camelCase"],
+				"leadingUnderscore": "allow"
+			},
+			{
+				"selector": "variable",
+				"types": ["boolean", "number", "string", "array"],
+				"format": ["camelCase"],
+				"leadingUnderscore": "allow"
+			},
+			{
+				"selector": "typeLike",
+				"format": ["PascalCase"]
+			},
+			{
+				"selector": "variable",
+				"format": ["PascalCase"],
+				"filter": {
+					"regex": "^[A-Z][a-zA-Z0-9]*$", // PascalCase
+					"match": true
+				},
+				"leadingUnderscore": "allow",
+				"trailingUnderscore": "allow"
+			}
+		],
+		"react/jsx-filename-extension": [
+			"warn",
+			{
+				"extensions": [".ts", ".tsx"]
+			}
+		]
+	}
 }
