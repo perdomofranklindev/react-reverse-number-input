@@ -1,9 +1,13 @@
 import React from 'react';
-
-import { ReverseNumberInput } from 'reverse-input-number';
+import { ReverseNumberInput } from 'reverse-number-input';
 
 const App = () => {
-	return <ReverseNumberInput text="Create React Library Example 😄" />;
+	return (
+		<div>
+			<h1>Hello World</h1>
+			<ReverseNumberInput />
+		</div>
+	);
 };
 
 export default App;
