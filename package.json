@@ -1,10 +1,10 @@
 {
-	"name": "reverse-input-number",
+	"name": "reverse-number-input",
 	"version": "1.0.0",
 	"description": "A formatted number input but the cursos is at the end of the input.",
 	"author": "perdomofranklindev",
 	"license": "MIT",
-	"repository": "perdomofranklindev/reverse-input-number",
+	"repository": "perdomofranklindev/reverse-number-input",
 	"main": "dist/index.js",
 	"module": "dist/index.modern.js",
 	"source": "src/index.tsx",
