@@ -46,6 +46,7 @@
 		"@typescript-eslint/no-unnecessary-condition": "error",
 		"@typescript-eslint/strict-boolean-expressions": 0,
 		"@typescript-eslint/require-await": "error",
+		"@typescript-eslint/consistent-type-imports": 0,
 		"@typescript-eslint/naming-convention": [
 			"error",
 			{

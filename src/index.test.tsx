@@ -1,7 +1,7 @@
-import { ReverseInputNumber } from '.';
+import { ReverseNumberInput } from './components/ReverseNumberInput';
 
-describe('ReverseInputNumber', () => {
-  it('is truthy', () => {
-    expect(ReverseInputNumber).toBeTruthy();
-  });
+describe('ReverseNumberInput', () => {
+	it('is truthy', () => {
+		expect(ReverseNumberInput).toBeTruthy();
+	});
 });
