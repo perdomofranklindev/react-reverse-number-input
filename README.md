@@ -13,15 +13,15 @@ npm install --save reverse-input-number
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import MyComponent from 'reverse-input-number'
-import 'reverse-input-number/dist/index.css'
+import MyComponent from 'reverse-input-number';
+import 'reverse-input-number/dist/index.css';
 
 class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+	render() {
+		return <MyComponent />;
+	}
 }
 ```
 
