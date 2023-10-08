@@ -1,4 +1,5 @@
 import {
+	formatValue,
 	getOnlyNumber,
 	initializeTheNumber,
 } from '../utils/reverse-number-input-utils';
@@ -9,7 +10,6 @@ describe('Test utilities to handle the number entries', () => {
 			expect(initializeTheNumber(2)).toBe('0.00');
 		});
 	});
-
 	describe('Should be numeric values', () => {
 		it('Alphanumeric values should be numeric', () => {
 			expect(getOnlyNumber('12A')).toBe('12');
@@ -20,6 +20,16 @@ describe('Test utilities to handle the number entries', () => {
 		});
 		it('Negative numbers should be numeric', () => {
 			expect(getOnlyNumber('-15.000')).toBe('-15000');
+		});
+	});
+	describe('Number formatted', () => {
+		it('Should return a formatted number', () => {
+			expect(
+				formatValue({
+					valueWithDecimal: '150200',
+					decimalScale: 2,
+				}),
+			).toBe('150,200.00');
 		});
 	});
 });
