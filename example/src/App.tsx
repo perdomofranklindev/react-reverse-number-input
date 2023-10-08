@@ -1,10 +1,9 @@
 import React from 'react';
-import { ReverseNumberInput } from 'reverse-number-input';
+import { ReverseNumberInput } from 'react-reverse-number-input'
 
 const App = () => {
 	return (
 		<div>
-			<h1>Hello World</h1>
 			<ReverseNumberInput />
 		</div>
 	);

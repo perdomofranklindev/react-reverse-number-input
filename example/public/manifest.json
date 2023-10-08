@@ -1,6 +1,6 @@
 {
-	"short_name": "reverse-number-input",
-	"name": "reverse-number-input",
+	"short_name": "react-reverse-number-input",
+	"name": "react-reverse-number-input",
 	"icons": [
 		{
 			"src": "favicon.ico",
