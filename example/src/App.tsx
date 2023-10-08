@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReverseNumberInput } from 'react-reverse-number-input'
+import { ReverseNumberInput } from 'react-reverse-number-input';
 
 const App = () => {
 	return (
