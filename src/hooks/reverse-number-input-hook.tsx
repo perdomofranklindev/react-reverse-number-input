@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	formatValue,
 	getOnlyNumber,
@@ -22,7 +22,7 @@ export const useFormatterNumber = ({
 	onChange,
 }: ReverseNumberInputProps): FormatterNumberReturns => {
 	// State to hold the input value
-	const [inputValue, setInputValue] = React.useState<string>(
+	const [inputValue, setInputValue] = useState<string>(
 		typeof value === 'number' ? value.toString() : value,
 	); // Initialize with provided value
 
