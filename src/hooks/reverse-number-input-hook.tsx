@@ -101,8 +101,8 @@ export const useFormatterNumber = ({
 
 	React.useEffect(() => {
 		updateValue(value.toString());
-	}, []);
-
+	}, [value]);
+	
 	return {
 		inputValue,
 		setInputValue,
