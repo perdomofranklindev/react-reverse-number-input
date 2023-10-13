@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { FormattedOutputObject } from './formatter-types';
-import { formatValue, getOnlyNumber, initializeTheNumber } from './formatter-utils';
 import { ReverseNumberInputProps } from '../components/types';
+import {
+	formatValue,
+	getOnlyNumber,
+	initializeTheNumber,
+} from './formatter-utils';
 
 interface FormatterNumberReturns {
 	inputValue: string;
