@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
-import { FormattedOutputObject } from './formatter-types';
+import { FormattedOutputObject, NumberFormatterState } from './formatter-types';
 import { ReverseNumberInputProps } from '../components/types';
 import {
 	formatValue,
 	getOnlyNumber,
 	initializeTheNumber,
 } from './formatter-utils';
-
-interface FormatterNumberReturns {
-	inputValue: string;
-	setInputValue: React.Dispatch<React.SetStateAction<string>>;
-	handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
 
 export const useFormatterNumber = ({
 	max,
@@ -21,7 +15,7 @@ export const useFormatterNumber = ({
 	value = '',
 	onValueChange,
 	onChange,
-}: ReverseNumberInputProps): FormatterNumberReturns => {
+}: ReverseNumberInputProps): NumberFormatterState => {
 	// State to hold the input value
 	const [inputValue, setInputValue] = useState<string>(
 		typeof value === 'number' ? value.toString() : value,
