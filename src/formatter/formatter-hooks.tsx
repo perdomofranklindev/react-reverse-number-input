@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import {
-	formatValue,
-	getOnlyNumber,
-	initializeTheNumber,
-} from '../utils/reverse-number-input-utils';
-import { ReverseNumberInputProps } from '../types/reverse-number-input';
+import { FormattedOutputObject } from './formatter-types';
+import { formatValue, getOnlyNumber, initializeTheNumber } from './formatter-utils';
+import { ReverseNumberInputProps } from '../components/types';
 
 interface FormatterNumberReturns {
 	inputValue: string;
@@ -15,8 +12,8 @@ interface FormatterNumberReturns {
 export const useFormatterNumber = ({
 	max,
 	min,
-	decimalScale = 2,
-	enableCommaSeparator,
+	decimalScale = 0,
+	enableCommaSeparator = false,
 	value = '',
 	onValueChange,
 	onChange,
@@ -27,30 +24,16 @@ export const useFormatterNumber = ({
 	); // Initialize with provided value
 
 	/**
-	 * @description - Handle value change.
-	 * @param {string} formattedValue - Formatted value.
-	 * @returns {void} - Nothing.
-	 */
-	const handleValueChange = (formattedValue: string): void => {
-		if (onValueChange) {
-			onValueChange({
-				formattedValue,
-				value: parseFloat(formattedValue.replace(/,/g, '')).toFixed(
-					decimalScale || 0,
-				),
-				floatValue: parseFloat(formattedValue.replace(/,/g, '')),
-			});
-		}
-	};
-
-	/**
 	 * @description - Handle empty value.
 	 * @returns {void} - Nothing.
 	 */
-	const handleEmptyValue = (): void => {
+	const handleEmptyValue = (): FormattedOutputObject => {
 		const zeroValue = initializeTheNumber(decimalScale);
-		setInputValue(zeroValue);
-		handleValueChange(zeroValue);
+		return {
+			formattedValue: zeroValue,
+			value: '0',
+			floatValue: 0,
+		};
 	};
 
 	/**
@@ -58,11 +41,10 @@ export const useFormatterNumber = ({
 	 * @param newValue - New value.
 	 * @returns {void} - Nothing.
 	 */
-	const updateValue = (newValue: string): void => {
+	const updateValue = (newValue: string): FormattedOutputObject => {
 		// Early return for empty values.
 		if (newValue === '') {
-			handleEmptyValue();
-			return;
+			return handleEmptyValue();
 		}
 
 		const typedValue = getOnlyNumber(newValue); // Transform and validate the typed number.
@@ -82,7 +64,14 @@ export const useFormatterNumber = ({
 		});
 
 		setInputValue(formattedValue);
-		handleValueChange(formattedValue);
+
+		return {
+			formattedValue,
+			value: parseFloat(formattedValue.replace(/,/g, '')).toFixed(
+				decimalScale || 0,
+			),
+			floatValue: parseFloat(formattedValue.replace(/,/g, '')),
+		};
 	};
 
 	/**
@@ -92,17 +81,26 @@ export const useFormatterNumber = ({
 	 */
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		const newValue = e.target.value;
-		updateValue(newValue);
+
+		const objectFormatted = updateValue(newValue);
+
+		if (onValueChange) {
+			onValueChange(objectFormatted);
+		}
 
 		if (onChange) {
-			onChange(e);
+			// Consistent value in the native event onChange.
+			onChange({
+				...e,
+				target: { ...e.target, value: objectFormatted.value },
+			});
 		}
 	};
 
 	React.useEffect(() => {
 		updateValue(value.toString());
 	}, [value]);
-	
+
 	return {
 		inputValue,
 		setInputValue,

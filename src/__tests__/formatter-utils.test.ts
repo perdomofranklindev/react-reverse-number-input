@@ -1,8 +1,4 @@
-import {
-	formatValue,
-	getOnlyNumber,
-	initializeTheNumber,
-} from '../utils/reverse-number-input-utils';
+import { formatValue, getOnlyNumber, initializeTheNumber } from '../formatter';
 
 describe('Test utilities to handle the number entries', () => {
 	describe('Value initialization', () => {

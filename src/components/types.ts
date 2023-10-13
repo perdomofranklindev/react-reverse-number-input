@@ -1,3 +1,5 @@
+import { FormattedOutputObject } from '../formatter';
+
 export interface ReverseNumberInputProps
 	extends React.DetailedHTMLProps<
 		React.InputHTMLAttributes<HTMLInputElement>,
@@ -8,10 +10,6 @@ export interface ReverseNumberInputProps
 	decimalScale?: number;
 	enableCommaSeparator?: boolean;
 	value?: string | number;
-	onValueChange?: (valueObject: {
-		formattedValue: string;
-		value: string;
-		floatValue: number;
-	}) => void;
+	onValueChange?: (valueObject: FormattedOutputObject) => void;
 	onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }

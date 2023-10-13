@@ -1,7 +1,6 @@
 import React from 'react';
-import { ReverseNumberInputProps } from '../types/reverse-number-input';
-import { useFormatterNumber } from '../hooks/reverse-number-input-hook';
-
+import { useFormatterNumber } from '../formatter';
+import { ReverseNumberInputProps } from './types';
 /**
  * @author Franklin Perdomo <perdomofranklindev@gmail.com>
  * @description - Reverse input number component.
