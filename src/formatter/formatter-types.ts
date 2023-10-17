@@ -6,7 +6,7 @@ export interface FormattedOutputObject {
 
 // Hook returning.
 export interface NumberFormatterState {
-	inputValue: string;
-	setInputValue: React.Dispatch<React.SetStateAction<string>>;
+	inputValue: string | undefined;
+	setInputValue: React.Dispatch<React.SetStateAction<string | undefined>>;
 	handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FormattedOutputObject, NumberFormatterState } from './formatter-types';
 import { ReverseNumberInputProps } from '../components/types';
 import {
+	adjustCursorPosition,
 	formatValue,
 	getOnlyNumber,
 	initializeTheNumber,
@@ -12,12 +13,12 @@ export const useFormatterNumber = ({
 	min,
 	decimalScale = 0,
 	enableCommaSeparator = false,
-	value = '',
+	value,
 	onValueChange,
 	onChange,
 }: ReverseNumberInputProps): NumberFormatterState => {
 	// State to hold the input value
-	const [inputValue, setInputValue] = useState<string>(
+	const [inputValue, setInputValue] = useState<string | undefined>(
 		typeof value === 'number' ? value.toString() : value,
 	); // Initialize with provided value
 
@@ -39,9 +40,9 @@ export const useFormatterNumber = ({
 	 * @param newValue - New value.
 	 * @returns {void} - Nothing.
 	 */
-	const updateValue = (newValue: string): FormattedOutputObject => {
+	const updateValue = (newValue: string | undefined): FormattedOutputObject => {
 		// Early return for empty values.
-		if (newValue === '') {
+		if (newValue === '' || newValue === undefined) {
 			return handleEmptyValue();
 		}
 
@@ -78,6 +79,7 @@ export const useFormatterNumber = ({
 	 * @returns {void} - Nothing.
 	 */
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+		const inputElement = e.target as HTMLInputElement;
 		const newValue = e.target.value;
 
 		const objectFormatted = updateValue(newValue);
@@ -86,17 +88,31 @@ export const useFormatterNumber = ({
 			onValueChange(objectFormatted);
 		}
 
+		// Consistent value in the native event onChange.
 		if (onChange) {
-			// Consistent value in the native event onChange.
 			onChange({
 				...e,
 				target: { ...e.target, value: objectFormatted.value },
 			});
 		}
+
+		if (enableCommaSeparator) {
+			const { selectionStart, selectionEnd } = adjustCursorPosition({
+				inputSelection: {
+					selectionStart: inputElement.selectionStart,
+					selectionEnd: inputElement.selectionEnd
+				},
+				previousValue: inputValue || '',
+				currentValue: newValue,
+			});
+			requestAnimationFrame(() => {
+				inputElement.setSelectionRange(selectionStart, selectionEnd);
+			});
+		}
 	};
 
 	React.useEffect(() => {
-		updateValue(value.toString());
+		updateValue(value ? value.toString() : '');
 	}, [value]);
 
 	return {

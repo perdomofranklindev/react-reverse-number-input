@@ -4,10 +4,10 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"start": "node ../node_modules/react-scripts/bin/react-scripts.js start",
-		"build": "node ../node_modules/react-scripts/bin/react-scripts.js build",
-		"test": "node ../node_modules/react-scripts/bin/react-scripts.js test",
-		"eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
 	},
 	"dependencies": {
 		"@testing-library/jest-dom": "latest",
@@ -17,13 +17,14 @@
 		"@types/node": "latest",
 		"@types/react": "latest",
 		"@types/react-dom": "latest",
+		"eslint-config-react-app": "latest",
+		"postcss-normalize": "latest",
+		"postcss-preset-env": "latest",
 		"react": "latest",
 		"react-dom": "latest",
 		"react-scripts": "latest",
 		"typescript": "latest",
-		"postcss-preset-env": "latest",
-		"postcss-normalize": "latest",
-		"react-reverse-number-input": "file:.."
+		"react-reverse-number-input": "file: ../"
 	},
 	"devDependencies": {
 		"@babel/plugin-syntax-object-rest-spread": "^7.8.3"

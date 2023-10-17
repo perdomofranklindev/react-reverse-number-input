@@ -52,3 +52,35 @@ export const formatValue = ({
 
 	return formattedValue;
 };
+
+export const adjustCursorPosition = ({
+	inputSelection,
+	previousValue,
+	currentValue,
+}: {
+	inputSelection: {
+		selectionStart: number | null;
+		selectionEnd: number | null;
+	};
+	previousValue: string;
+	currentValue: string;
+}): {
+	selectionStart: number;
+	selectionEnd: number;
+} => {
+	let selectionStart = Number(inputSelection.selectionStart);
+	let selectionEnd = Number(inputSelection.selectionEnd);
+
+	// Check if a new comma was added
+	const previousCommaCount = (previousValue.match(/,/g) || []).length;
+	const currentCommaCount = (currentValue.match(/,/g) || []).length;
+	if (currentCommaCount > previousCommaCount) {
+		selectionStart += 1;
+		selectionEnd += 1;
+	}
+
+	return {
+		selectionStart,
+		selectionEnd,
+	};
+};
