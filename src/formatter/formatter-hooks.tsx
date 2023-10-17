@@ -100,7 +100,7 @@ export const useFormatterNumber = ({
 			const { selectionStart, selectionEnd } = adjustCursorPosition({
 				inputSelection: {
 					selectionStart: inputElement.selectionStart,
-					selectionEnd: inputElement.selectionEnd
+					selectionEnd: inputElement.selectionEnd,
 				},
 				previousValue: inputValue || '',
 				currentValue: newValue,

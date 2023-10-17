@@ -19,5 +19,11 @@ export const ReverseNumberInput: React.FC<ReverseNumberInputProps> = (
 	props,
 ): JSX.Element => {
 	const { inputValue, handleChange } = useFormatterNumber(props);
-	return <input value={inputValue} onChange={handleChange} placeholder='this is a chance' {...props}  />;
+	return (
+		<input
+			value={inputValue}
+			onChange={handleChange}
+			{...props}
+		/>
+	);
 };
