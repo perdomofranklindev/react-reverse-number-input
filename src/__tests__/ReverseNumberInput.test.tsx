@@ -1,4 +1,4 @@
-import { ReverseNumberInput } from '../components/ReverseNumberInput';
+import { ReverseNumberInput } from "../components/ReverseNumberInput";
 
 describe('ReverseNumberInput', () => {
 	it('is truthy', () => {

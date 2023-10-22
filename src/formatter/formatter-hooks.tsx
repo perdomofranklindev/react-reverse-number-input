@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NumberFormatterState } from './formatter-types';
 import { ReverseNumberInputProps } from '../components/types';
-import { formatValueRefactored } from './formatter-utils';
+import { NumberFormatter } from './formatter-utils';
 
 export const useFormatterNumber = ({
 	max,
@@ -12,10 +12,16 @@ export const useFormatterNumber = ({
 	onValueChange,
 	onChange,
 }: ReverseNumberInputProps): NumberFormatterState => {
-	// State to hold the input value
 	const [inputValue, setInputValue] = useState<string | undefined>(
 		typeof value === 'number' ? value.toString() : value,
-	); // Initialize with provided value
+	);
+
+	const { formatValue } = new NumberFormatter({
+		decimalScale,
+		enableCommaSeparator,
+		max,
+		min,
+	});
 
 	/**
 	 * @description - Function to adjust the cursor position in the input.
@@ -29,6 +35,16 @@ export const useFormatterNumber = ({
 		previousValue: string | undefined,
 		currentValue: string,
 	): void {
+		/**
+		 * IMPORTANT: When the comma is enabled and the user is typing the apparition
+		 * of each comma after the formatted move the cursor to the right, this
+		 * function maintain the cursor position where the user is typing.
+		 */
+
+		if (!enableCommaSeparator) {
+			return;
+		}
+
 		let selectionStart = Number(inputElement.selectionStart);
 		let selectionEnd = Number(inputElement.selectionEnd);
 
@@ -51,20 +67,12 @@ export const useFormatterNumber = ({
 	 * @param {React.ChangeEvent<HTMLInputElement>} e - React.ChangeEvent<HTMLInputElement>.
 	 * @returns {void} - Nothing.
 	 */
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+	function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
 		const inputElement = e.target as HTMLInputElement;
 		const newValue = inputElement.value;
 
 		// Formatted value.
-		const objectFormatted = formatValueRefactored({
-			newValue,
-			max,
-			min,
-			decimalScale,
-			enableCommaSeparator,
-		});
-
-		setInputValue(objectFormatted.formattedValue); // Update state.
+		const objectFormatted = formatValue(newValue);
 
 		// Callback onValueChange.
 		if (onValueChange) {
@@ -79,19 +87,22 @@ export const useFormatterNumber = ({
 			});
 		}
 
-		if (enableCommaSeparator) {
-			adjustCursorPosition(
-				inputElement,
-				inputValue,
-				objectFormatted.formattedValue,
-			);
-		}
-	};
+		// Adjust cursor position.
+		adjustCursorPosition(
+			inputElement,
+			inputValue,
+			objectFormatted.formattedValue,
+		);
+	}
+
+	function syncFormatted(): void {
+		const str = value ? value.toString() : '';
+		setInputValue(formatValue(str).formattedValue);
+	}
 
 	// Sync formatted
 	useEffect(() => {
-		const stringValue = value ? value.toString() : '';
-		formatValue(stringValue);
+		syncFormatted();
 	}, [value]);
 
 	return {
