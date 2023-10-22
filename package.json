@@ -74,22 +74,5 @@
 			"prettier --write '**/*.{js.jsx,tsx,ts,css,scss,md,json,yml}'",
 			"npm run test:lint:fix"
 		]
-	},
-	"jest": {
-		"testPathIgnorePatterns": [
-			"/node_modules/",
-			"<rootDir>/lib/"
-		],
-		"transform": {
-			"^.+\\.tsx?$": "ts-jest"
-		},
-		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-		"moduleFileExtensions": [
-			"ts",
-			"tsx",
-			"js",
-			"jsx",
-			"json"
-		]
 	}
 }

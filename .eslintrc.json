@@ -31,6 +31,7 @@
 		"warnOnUnsupportedTypeScriptVersion": false
 	},
 	"plugins": ["react", "function-name"],
+	"ignorePatterns": ["jest.config.js"],
 	"rules": {
 		"no-unused-vars": "warn",
 		"no-else-return": "error",
