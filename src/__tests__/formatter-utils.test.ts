@@ -27,4 +27,13 @@ describe('Test utilities to handle the number entries', () => {
 			expect(numberFormatter.sanitizedNumber('-15.000')).toBe('-15.000');
 		});
 	});
+	describe('Relocate the decimal point to the right place', () => {
+		const numberFormatter = new NumberFormatter({
+			decimalScale: 2,
+		});
+
+		it('Normalized decimal point', () => {
+			expect(numberFormatter.moveDecimalPoint('10.222')).toBe('102.22');
+		});
+	});
 });
