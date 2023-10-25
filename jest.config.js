@@ -6,6 +6,6 @@ module.exports = {
 	moduleNameMapper: {
 		'^@/(.*)$': '<rootDir>/src/$1',
 	},
-	testPathIgnorePatterns: ['/node_modules/', '\\.tsx$'],
+	testPathIgnorePatterns: ['/node_modules/'],
 	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
 };

@@ -1,6 +1,6 @@
 {
 	"name": "react-reverse-number-input",
-	"version": "1.0.0",
+	"version": "1.0.0-dev.1",
 	"description": "A formatted number input but the cursor is at the end of the input.",
 	"author": "perdomofranklindev",
 	"license": "MIT",
