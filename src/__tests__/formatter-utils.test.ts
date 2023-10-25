@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { NumberFormatter } from '../formatter';
 
 describe('Test utilities to handle the number entries', () => {
