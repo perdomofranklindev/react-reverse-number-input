@@ -24,7 +24,7 @@
 		"react-dom": "latest",
 		"react-scripts": "latest",
 		"typescript": "latest",
-		"react-reverse-number-input": "file: ../"
+		"react-reverse-number-input": "latest"
 	},
 	"devDependencies": {
 		"@babel/plugin-syntax-object-rest-spread": "^7.8.3"

@@ -11,18 +11,22 @@ describe('Test utilities to handle the number entries', () => {
 			expect(numberFormatter.initialNumber().formattedValue).toBe('0.00');
 		});
 	});
-	// describe('Should be numeric values', () => {
-	// 	it('Alphanumeric values should be numeric', () => {
-	// 		expect(getOnlyNumber('12A')).toBe('12');
-	// 		expect(getOnlyNumber('B12')).toBe('12');
-	// 	});
-	// 	it('Numerical units symbols values should numeric', () => {
-	// 		expect(getOnlyNumber('15.000')).toBe('15000');
-	// 	});
-	// 	it('Negative numbers should be numeric', () => {
-	// 		expect(getOnlyNumber('-15.000')).toBe('-15000');
-	// 	});
-	// });
+	describe('Should be numeric values', () => {
+		const numberFormatter = new NumberFormatter({});
+
+		it('Alphanumeric values should be numeric', () => {
+			expect(numberFormatter.sanitizedNumber('12A')).toBe('12');
+			expect(numberFormatter.sanitizedNumber('B12')).toBe('12');
+		});
+		it('Numerical units symbols values should numeric', () => {
+			expect(numberFormatter.sanitizedNumber('15.000')).toBe('15.000');
+			expect(numberFormatter.sanitizedNumber('3..000')).toBe('3.000');
+			expect(numberFormatter.sanitizedNumber('+100')).toBe('100');
+		});
+		it('Negative numbers should be numeric', () => {
+			expect(numberFormatter.sanitizedNumber('-15.000')).toBe('-15.000');
+		});
+	});
 	// describe('Number formatted', () => {
 	// 	it('Should return a formatted number', () => {
 	// 		expect(
