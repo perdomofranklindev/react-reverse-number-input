@@ -2,7 +2,7 @@
 import { NumberFormatter } from '../formatter';
 
 describe('Test utilities to handle the number entries', () => {
-	describe('Value initialization', () => {
+	describe('Initial number', () => {
 		const numberFormatter = new NumberFormatter({
 			decimalScale: 2,
 		});
@@ -11,7 +11,7 @@ describe('Test utilities to handle the number entries', () => {
 			expect(numberFormatter.initialNumber().formattedValue).toBe('0.00');
 		});
 	});
-	describe('Should be numeric values', () => {
+	describe('Should be numeric value', () => {
 		const numberFormatter = new NumberFormatter({});
 
 		it('Alphanumeric values should be numeric', () => {
@@ -27,14 +27,4 @@ describe('Test utilities to handle the number entries', () => {
 			expect(numberFormatter.sanitizedNumber('-15.000')).toBe('-15.000');
 		});
 	});
-	// describe('Number formatted', () => {
-	// 	it('Should return a formatted number', () => {
-	// 		expect(
-	// 			formatValue({
-	// 				valueWithDecimal: '150200',
-	// 				decimalScale: 2,
-	// 			}),
-	// 		).toBe('150,200.00');
-	// 	});
-	// });
 });
