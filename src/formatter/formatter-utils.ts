@@ -13,16 +13,11 @@ export class NumberFormatter {
 	max: number;
 	min: number;
 
-	constructor({
-		decimalScale,
-		enableCommaSeparator,
-		max,
-		min,
-	}: NumberFormatterProps) {
-		this.decimalScale = Number(decimalScale);
-		this.enableCommaSeparator = Boolean(enableCommaSeparator);
-		this.max = Number(max);
-		this.min = Number(min);
+	constructor(params?: NumberFormatterProps) {
+		this.decimalScale = Number(params?.decimalScale);
+		this.enableCommaSeparator = Boolean(params?.enableCommaSeparator);
+		this.max = Number(params?.max);
+		this.min = Number(params?.min);
 	}
 
 	/**

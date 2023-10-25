@@ -11,7 +11,7 @@ describe('Test utilities to handle the number entries', () => {
 		});
 	});
 	describe('Should be numeric value', () => {
-		const numberFormatter = new NumberFormatter({});
+		const numberFormatter = new NumberFormatter();
 
 		it('Alphanumeric values should be numeric', () => {
 			expect(numberFormatter.sanitizedNumber('12A')).toBe('12');
